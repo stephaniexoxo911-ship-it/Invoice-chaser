@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact support — Invoice Chaser</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #F7F5EF;
+    color: #20241F;
+    margin: 0;
+    padding: 40px 20px;
+  }
+  .card {
+    max-width: 380px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 1px solid #E4E0D3;
+    border-radius: 12px;
+    padding: 26px;
+  }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  .sub { font-size: 13px; color: #5B6259; margin-bottom: 18px; }
+  label { font-size: 13px; color: #5B6259; display: block; margin-bottom: 4px; }
+  input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #E4E0D3;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 12px;
+  }
+  textarea { resize: none; }
+  button {
+    width: 100%;
+    background: #1F4D3A;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  [data-fs-error] { color: #B5542D; font-size: 12px; margin: -8px 0 12px; display: block; }
+  [data-fs-success] {
+    background: #E4EEE8;
+    color: #1F4D3A;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+    display: none;
+  }
+  [data-fs-success].visible { display: block; }
+  form.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Contact support</h1>
+  <div class="sub">Sends straight to our inbox — we'll reply by email.</div>
+
+  <!-- Success message: Formspree's script shows/hides this automatically -->
+  <div data-fs-success></div>
+
+  <form id="my-form">
+    <label for="name">Name</label>
+    <input id="name" name="name" data-fs-field />
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" required data-fs-field />
+    <span data-fs-error="email"></span>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4" required data-fs-field></textarea>
+    <span data-fs-error="message"></span>
+
+    <!-- Catches errors not tied to a specific field, e.g. a network failure -->
+    <span data-fs-error></span>
+
+    <button type="submit" data-fs-submit-btn>Send message</button>
+  </form>
+</div>
+
+<script>
+  // Formspree's own CDN script owns the request, the submitting state,
+  // and what counts as success — nothing here fakes a success state.
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#my-form', formId: 'xgogwwaz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
